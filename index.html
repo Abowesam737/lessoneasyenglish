@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تعلّم الإنجليزية بسهولة</title>
+  <meta name="description" content="تعلّم أهم 1000 كلمة إنجليزية، خمس كلمات في كل درس مع النطق الصحيح والمعنى بالعربي واختبارين لكل درس." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">Aa</div>
+      <div>
+        <h1>تعلّم الإنجليزية بسهولة</h1>
+        <p>أهم 1000 كلمة · خمس كلمات في كل درس</p>
+      </div>
+    </div>
+    <nav class="tabs">
+      <button class="tab active" data-view="learn">الدرس الحالي</button>
+      <button class="tab" data-view="mywords">كلماتي</button>
+    </nav>
+  </header>
+
+  <section class="progress-card">
+    <div class="progress-info">
+      <div><span class="big" id="learnedCount">0</span> / 1000 كلمة</div>
+      <div>الدرس <span class="big" id="lessonNum">1</span> من 200</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </section>
+
+  <main>
+    <!-- عرض الدرس -->
+    <section id="view-learn" class="view">
+      <ol class="steps" id="steps">
+        <li data-step="study"><span>1</span>ادرس الكلمات</li>
+        <li data-step="test1"><span>2</span>اختبار: اكتب بالإنجليزي</li>
+        <li data-step="test2"><span>3</span>اختبار: اكتب المعنى بالعربي</li>
+      </ol>
+
+      <!-- مرحلة الدراسة -->
+      <div class="stage" id="stage-study">
+        <div class="stage-head">
+          <h2>كلمات الدرس</h2>
+          <p>استمع لنطق كل كلمة واحفظ معناها جيداً. لن تنتقل للدرس التالي إلا بعد اجتياز الاختبارين.</p>
+        </div>
+        <div class="word-grid" id="studyGrid"></div>
+        <div class="actions">
+          <button class="btn primary" id="startTest1">أنا جاهز · ابدأ الاختبار الأول</button>
+        </div>
+      </div>
+
+      <!-- الاختبار الأول: عربي ← إنجليزي -->
+      <div class="stage hidden" id="stage-test1">
+        <div class="stage-head">
+          <h2>الاختبار الأول</h2>
+          <p>اكتب الكلمة <strong>بالإنجليزية</strong> أمام كل معنى عربي.</p>
+        </div>
+        <form class="quiz" id="quiz1" autocomplete="off"></form>
+        <div class="feedback" id="feedback1" role="status"></div>
+        <div class="actions">
+          <button class="btn primary" form="quiz1" type="submit">تحقّق من الإجابات</button>
+          <button class="btn ghost back-study" type="button">رجوع لمراجعة الكلمات</button>
+        </div>
+      </div>
+
+      <!-- الاختبار الثاني: إنجليزي ← عربي -->
+      <div class="stage hidden" id="stage-test2">
+        <div class="stage-head">
+          <h2>الاختبار الثاني</h2>
+          <p>اكتب <strong>المعنى بالعربية</strong> أمام كل كلمة إنجليزية.</p>
+        </div>
+        <form class="quiz" id="quiz2" autocomplete="off"></form>
+        <div class="feedback" id="feedback2" role="status"></div>
+        <div class="actions">
+          <button class="btn primary" form="quiz2" type="submit">تحقّق من الإجابات</button>
+          <button class="btn ghost back-study" type="button">رجوع لمراجعة الكلمات</button>
+        </div>
+      </div>
+
+      <!-- النجاح -->
+      <div class="stage hidden" id="stage-done">
+        <div class="success">
+          <div class="trophy">🏆</div>
+          <h2>أحسنت! اجتزت الدرس بنجاح</h2>
+          <p id="doneText"></p>
+          <button class="btn primary" id="nextLesson">افتح الكلمات الخمس التالية</button>
+        </div>
+      </div>
+
+      <!-- إنهاء جميع الكلمات -->
+      <div class="stage hidden" id="stage-finished">
+        <div class="success">
+          <div class="trophy">🎓</div>
+          <h2>مبروك! أتممت الألف كلمة كاملة</h2>
+          <p>يمكنك مراجعة جميع كلماتك من تبويب «كلماتي».</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- كلماتي -->
+    <section id="view-mywords" class="view hidden">
+      <div class="stage">
+        <div class="stage-head">
+          <h2>الكلمات التي أتقنتها</h2>
+          <p id="mywordsHint"></p>
+        </div>
+        <input class="search" id="search" type="search" placeholder="ابحث في كلماتك..." />
+        <div class="word-list" id="myWordsList"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <button class="link" id="resetBtn" type="button">إعادة البدء من الصفر</button>
+  </footer>
+
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <script src="words.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
